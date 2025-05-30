@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Cloud, Droplets, Eye, Wind, Thermometer, MapPin, Gauge } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -25,16 +26,19 @@ export default function WeatherPage() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [selectedCity, setSelectedCity] = useState("Zwolle")
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await fetch("/api/weather")
+        setLoading(true)
+        const response = await fetch(`/api/weather?city=${encodeURIComponent(selectedCity)}`)
         if (!response.ok) {
           throw new Error("Failed to fetch weather data")
         }
         const data = await response.json()
         setWeatherData(data)
+        setError(null)
       } catch (err) {
         setError("Failed to load weather data")
         console.error(err)
@@ -48,7 +52,7 @@ export default function WeatherPage() {
     // Refresh data every 10 minutes
     const interval = setInterval(fetchWeather, 10 * 60 * 1000)
     return () => clearInterval(interval)
-  }, [])
+  }, [selectedCity])
 
   if (loading) {
     return (
@@ -72,7 +76,27 @@ export default function WeatherPage() {
         {/* Header */}
         <div className="text-center mb-8 pt-8">
           <h1 className="text-4xl font-bold text-white mb-2">Live Weather Dashboard</h1>
-          <p className="text-blue-100">Real-time conditions from wttr.in</p>
+          <p className="text-blue-100 mb-6">Real-time conditions from wttr.in</p>
+          
+          {/* City Selection */}
+          <div className="max-w-xs mx-auto">
+            <Select value={selectedCity} onValueChange={setSelectedCity}>
+              <SelectTrigger className="bg-white/90 backdrop-blur-sm">
+                <SelectValue placeholder="Select a city" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Zwolle">Zwolle, Netherlands</SelectItem>
+                <SelectItem value="Amsterdam">Amsterdam, Netherlands</SelectItem>
+                <SelectItem value="Utrecht">Utrecht, Netherlands</SelectItem>
+                <SelectItem value="Groningen">Groningen, Netherlands</SelectItem>
+                <SelectItem value="Eindhoven">Eindhoven, Netherlands</SelectItem>
+                <SelectItem value="Maastricht">Maastricht, Netherlands</SelectItem>
+                <SelectItem value="Den Haag">Den Haag, Netherlands</SelectItem>
+                <SelectItem value="Rotterdam">Rotterdam, Netherlands</SelectItem>
+                <SelectItem value="Nijmegen">Nijmegen, Netherlands</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {/* Main Weather Card */}
