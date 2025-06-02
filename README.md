@@ -54,8 +54,10 @@ Visit [http://localhost:3000](http://localhost:3000) to see your app.
 docker build -t weather-dashboard .
 
 # Run container
-docker run -p 3000:3000 weather-dashboard
+docker run -p 3000:8080 weather-dashboard
 ```
+
+Visit [http://localhost:3000](http://localhost:3000) to see your app.
 
 ## 📁 Project Structure
 
