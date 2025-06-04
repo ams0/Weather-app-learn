@@ -1,0 +1,14 @@
+{
+  "name": "pdf-app",
+  "version": "1.0.0",
+  "description": "Node.js app to scan /pdfs for PDF files and output their names, page count, and modified date to a CSV in /output.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "pdf-parse": "^1.1.1"
+  },
+  "author": "",
+  "license": "MIT"
+}

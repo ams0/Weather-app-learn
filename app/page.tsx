@@ -56,7 +56,7 @@ export default function WeatherPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center">
         <div className="text-white text-xl">Loading weather data...</div>
       </div>
     )
@@ -64,19 +64,19 @@ export default function WeatherPage() {
 
   if (error || !weatherData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center">
         <div className="text-white text-xl">Error loading weather data</div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-400 via-green-500 to-green-600 p-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 pt-8">
           <h1 className="text-4xl font-bold text-white mb-2">Live Weather Dashboard</h1>
-          <p className="text-blue-100 mb-6">Real-time conditions from wttr.in</p>
+          <p className="text-green-100 mb-6">Real-time conditions from wttr.in</p>
           
           {/* City Selection */}
           <div className="max-w-xs mx-auto">
@@ -144,7 +144,7 @@ export default function WeatherPage() {
                 {/* Weather Details Grid */}
                 <div className="grid grid-cols-2 gap-4 mt-6">
                   <div className="flex items-center gap-2">
-                    <Droplets className="h-4 w-4 text-blue-500" />
+                    <Droplets className="h-4 w-4 text-green-500" />
                     <div>
                       <p className="text-sm text-gray-600">Humidity</p>
                       <p className="font-semibold">{weatherData.humidity}%</p>
@@ -206,7 +206,7 @@ export default function WeatherPage() {
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center gap-2">
-                <Wind className="h-5 w-5 text-blue-500" />
+                <Wind className="h-5 w-5 text-green-500" />
                 Wind & Air
               </CardTitle>
             </CardHeader>
@@ -269,7 +269,7 @@ export default function WeatherPage() {
 
         {/* Footer */}
         <div className="text-center mt-8 pb-8">
-          <p className="text-blue-100 text-sm">Last updated: {new Date().toLocaleTimeString()} • Data from wttr.in</p>
+          <p className="text-green-100 text-sm">Last updated: {new Date().toLocaleTimeString()} • Data from wttr.in</p>
         </div>
       </div>
     </div>

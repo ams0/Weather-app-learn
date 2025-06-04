@@ -1,0 +1,163 @@
+id: /subscriptions/c5242457-78e0-4426-ad20-c44f0c26b7a9/resourceGroups/rg-weater-pdf-app/providers/Microsoft.App/containerapps/pdfscan
+identity:
+  principalId: e11821db-12f8-43f7-863a-21c00c521176
+  tenantId: 2f88d75e-5ed4-41c4-9556-e627fd1ee262
+  type: SystemAssigned
+location: West Europe
+name: pdfscan
+properties:
+  configuration:
+    activeRevisionsMode: Single
+    dapr: null
+    identitySettings: []
+    ingress: null
+    maxInactiveRevisions: null
+    registries:
+    - identity: system
+      passwordSecretRef: ''
+      server: weatherappalessandro.azurecr.io
+      username: ''
+    revisionTransitionThreshold: null
+    runtime: null
+    secrets: null
+    service: null
+    targetLabel: ''
+  customDomainVerificationId: B7A4FD32CC9992EB9D20198763F21CF69598BD7516154A0D565DD2BC22694C4F
+  delegatedIdentities: []
+  environmentId: /subscriptions/c5242457-78e0-4426-ad20-c44f0c26b7a9/resourceGroups/rg-weater-pdf-app/providers/Microsoft.App/managedEnvironments/cae-weater-pdf-app
+  eventStreamEndpoint: https://westeurope.azurecontainerapps.dev/subscriptions/c5242457-78e0-4426-ad20-c44f0c26b7a9/resourceGroups/rg-weater-pdf-app/containerApps/pdfscan/eventstream
+  latestReadyRevisionName: pdfscan--0000001
+  latestRevisionFqdn: ''
+  latestRevisionName: pdfscan--0000002
+  managedEnvironmentId: /subscriptions/c5242457-78e0-4426-ad20-c44f0c26b7a9/resourceGroups/rg-weater-pdf-app/providers/Microsoft.App/managedEnvironments/cae-weater-pdf-app
+  outboundIpAddresses:
+  - 51.137.8.84
+  - 51.137.8.250
+  - 98.64.213.69
+  - 4.175.48.136
+  - 98.64.208.171
+  - 98.64.213.254
+  - 98.64.209.113
+  - 98.64.211.186
+  - 4.175.51.174
+  - 98.64.215.90
+  - 4.175.51.59
+  - 98.64.210.120
+  - 40.114.177.194
+  - 9.163.38.254
+  - 9.163.38.223
+  - 9.163.38.182
+  - 9.163.38.132
+  - 9.163.38.189
+  - 9.163.39.16
+  - 9.163.38.178
+  - 9.163.39.11
+  - 9.163.39.15
+  - 9.163.38.163
+  - 40.114.177.222
+  - 9.163.251.5
+  - 9.163.251.59
+  - 9.163.251.49
+  - 9.163.251.26
+  - 9.163.251.48
+  - 9.163.251.61
+  - 9.163.251.60
+  - 9.163.251.58
+  - 9.163.251.52
+  - 9.163.251.27
+  - 20.8.61.140
+  - 20.23.204.52
+  - 4.180.170.19
+  - 4.180.170.176
+  - 4.180.170.198
+  - 4.180.170.209
+  - 20.103.135.29
+  - 20.103.134.29
+  - 20.4.8.235
+  - 20.4.9.8
+  - 20.4.9.12
+  - 20.4.9.6
+  - 20.4.9.0
+  - 20.4.9.2
+  - 108.142.173.180
+  - 20.4.9.17
+  - 20.4.8.250
+  - 20.4.8.112
+  - 20.103.132.54
+  - 20.16.47.111
+  - 20.234.178.191
+  - 20.234.178.202
+  - 20.16.42.139
+  - 20.234.178.176
+  - 20.234.178.189
+  - 20.234.178.116
+  - 20.234.178.197
+  - 20.234.178.33
+  - 20.234.178.156
+  - 20.103.134.224
+  - 9.163.54.7
+  - 9.163.54.16
+  - 9.163.53.239
+  - 9.163.54.3
+  - 9.163.53.243
+  - 9.163.54.0
+  - 132.164.124.22
+  - 9.163.54.23
+  - 9.163.54.26
+  - 9.163.54.9
+  - 108.141.252.113
+  - 108.141.252.123
+  - 108.141.60.221
+  - 108.141.61.84
+  - 108.141.61.64
+  - 108.141.60.213
+  - 9.163.84.79
+  patchingMode: Automatic
+  provisioningState: Succeeded
+  runningStatus: Running
+  template:
+    containers:
+    - image: weatherappalessandro.azurecr.io/pdf-scan:1.0
+      imageType: ContainerImage
+      name: pdfscan
+      resources:
+        cpu: 0.5
+        ephemeralStorage: 2Gi
+        memory: 1Gi
+      volumeMounts:
+      - volumeName: pdfs
+        mountPath: /app/pdfs
+        subPath: pdfs
+      - volumeName: output
+        mountPath: /app/output
+        subPath: pdfs
+    volumes:
+    - name: output
+      storageType: AzureFile
+      storageName: files
+      mountOptions: dir_mode=0777,file_mode=0777,uid=1000,gid=1000,mfsymlinks,nobrl,cache=none
+    - name: pdfs
+      storageType: AzureFile
+      storageName: files
+      mountOptions: dir_mode=0777,file_mode=0777,uid=1000,gid=1000,mfsymlinks,nobrl,cache=none
+
+    initContainers: null
+    revisionSuffix: ''
+    scale:
+      cooldownPeriod: 300
+      maxReplicas: 1
+      minReplicas: 1
+      pollingInterval: 30
+      rules: null
+    serviceBinds: null
+    terminationGracePeriodSeconds: null
+  workloadProfileName: Consumption
+resourceGroup: rg-weater-pdf-app
+systemData:
+  createdAt: '2025-06-03T21:50:24.5632204'
+  createdBy: admin@MngEnvMCAP230239.onmicrosoft.com
+  createdByType: User
+  lastModifiedAt: '2025-06-03T21:58:23.9992045'
+  lastModifiedBy: admin@MngEnvMCAP230239.onmicrosoft.com
+  lastModifiedByType: User
+type: Microsoft.App/containerApps
