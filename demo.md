@@ -131,15 +131,21 @@ az containerapp create \
   --name pdfscan \
   --resource-group "$RESOURCE_GROUP" \
   --environment "$CONTAINERAPPS_ENVIRONMENT" \
-  --image "$REGISTRY_URL/pdf-scan:$IMAGES_TAG" \
+  --image "$REGISTRY_URL/pdf-scan:blob" \
   --registry-identity system \
   --registry-server "$REGISTRY_URL" \
   --cpu 0.5 \
   --memory 1.0Gi \
   --min-replicas 1 \
   --max-replicas 1 \
-  --yaml pdf-scan-app.yaml 
+  --env-vars \
+    "AZURE_STORAGE_ACCOUNT=contostore" \
+    "AZURE_STORAGE_BLOB=pdfs" \
+    "AZURE_STORAGE_ACCESSKEY=secretref:storage-account-key" \
+  --secrets \
+    "storage-account-key=$AZURE_STORAGE_ACCESSKEY"
 
+Create a volume mount for the output    
 dir_mode=0777,file_mode=0777,uid=999,gid=999,mfsymlinks,nobrl,cache=none
 
 az containerapp show --name pdfscan --resource-group "$RESOURCE_GROUP" -o yaml > pdf-scan-app.yaml
